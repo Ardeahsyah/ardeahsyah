@@ -114,4 +114,3 @@ function sendMessage(event) {
 
   window.location.href = 'mailto:ardeahsyah@gmail.com?subject=' + subject + '&body=' + body;
 }
-
