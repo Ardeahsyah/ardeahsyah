@@ -344,7 +344,7 @@ body.light .icon-btn {
   position: relative;
   padding: 26px;
   min-height: 620px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .profile-card {
@@ -430,8 +430,8 @@ body.light .chip {
 
 .floating-stat {
   position: relative;
-  flex: 1 1 160px;
-  padding: 18px;
+  flex: 1 1 170px;
+  padding: 16px;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -442,17 +442,29 @@ body.light .chip {
 
 .floating-stat strong {
   display: block;
-  font-size: 30px;
+  font-size: 24px;
   color: var(--cyan);
+  line-height: 1.15;
 }
 
 .floating-stat span {
-  font-size: 12px;
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 1.5;
   color: var(--muted);
 }
 
 .floating-stat.two {
   animation-delay: 1.2s;
+}
+
+.floating-stat.three {
+  animation-delay: 2.4s;
+}
+
+.floating-stat.four {
+  animation-delay: 3.6s;
 }
 
 @keyframes float {
@@ -546,6 +558,18 @@ body.light .chip {
   padding-left: 20px;
 }
 
+.card li {
+  margin-bottom: 10px;
+}
+
+.card li:last-child {
+  margin-bottom: 0;
+}
+
+.card li strong {
+  color: var(--cyan);
+}
+
 .icon {
   width: 48px;
   height: 48px;
@@ -600,8 +624,52 @@ body.light .chip {
 }
 
 .timeline-entry h3 {
-  font-size: 24px;
-  margin: 8px 0;
+  font-size: 22px;
+  margin: 0 0 6px;
+}
+
+.timeline-entry h2 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  margin: 0 0 4px;
+}
+
+.timeline-entry h2 p {
+  margin: 0;
+}
+
+.timeline-entry > em {
+  display: block;
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.timeline-entry > em p {
+  margin: 0;
+}
+
+.timeline-entry ul {
+  padding-left: 20px;
+  margin-top: 6px;
+}
+
+.timeline-entry li {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.timeline-entry li:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-entry li strong {
+  color: var(--white);
 }
 
 .project-card {
