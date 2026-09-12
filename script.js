@@ -46,7 +46,11 @@ document.getElementById('themeToggle').addEventListener('click', () => {
 });
 
 const heroText =
-  'Enterprise Process Excellence Leader with a proven track record of driving large-scale transformation, operational excellence and performance improvement across complex, multi-business environments spanning financial services, e-commerce, manufacturing and aviation.';
+  'Enterprise Process Excellence Leader with a proven track record of driving large-scale transformation, operational excellence and performance improvement across complex, multi-business environments spanning financial services, e-commerce, manufacturing and aviation. Proven ability to translate business strategy into measurable improvements in productivity, cost efficiency, service quality, customer experience, operational resilience and governance.
+
+Experienced in leading enterprise process transformation, operating model and workflow redesign, Lean Six Sigma, digitalisation, automation, AI and data-driven performance management. Proven ability to establish transformation governance, lead cross-functional and regional initiatives, strengthen KPI and performance management, and partner with senior leadership to deliver sustainable business outcomes.
+
+Combines strategic transformation leadership with deep hands-on expertise in process improvement and structured problem solving, with a track record of eliminating waste, reducing process variation, improving turnaround time, strengthening quality and controls, and building continuous improvement capabilities. Brings a customer-centric and data-driven approach to transforming complex operations, with the ability to translate improvement opportunities into scalable solutions that enhance stakeholder value and organisational performance.';
 
 let typeIndex = 0;
 const typingTarget = document.getElementById('typingText');
