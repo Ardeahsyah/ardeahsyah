@@ -46,7 +46,7 @@ document.getElementById('themeToggle').addEventListener('click', () => {
 });
 
 const heroText =
-  'Enterprise Transformation Leader with 15+ years driving multi-industry transformation across financial services, e-commerce, and manufacturing. Proven track record establishing and leading Transformation Management Offices, governing multi-year strategic portfolios, and advising C-suite leaders on operating model redesign, digital strategy, and enterprise performance.';
+  'Enterprise Process Excellence Leader with a proven track record of driving large-scale transformation, operational excellence and performance improvement across complex, multi-business environments spanning financial services, e-commerce, manufacturing and aviation.';
 
 let typeIndex = 0;
 const typingTarget = document.getElementById('typingText');
