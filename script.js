@@ -4,7 +4,7 @@ const menu = document.getElementById('navLinks');
 
 function showPage(pageId) {
   pages.forEach((page) => page.classList.remove('active'));
-  const target = document.getElementById(pageId) || document.getElementById('home');
+  const target = document.getElementById(pageId) || document.getElementById('profile');
   target.classList.add('active');
 
   links.forEach((link) => {
@@ -28,12 +28,12 @@ links.forEach((link) => {
 });
 
 window.addEventListener('load', () => {
-  const initial = location.hash.replace('#', '') || 'home';
+  const initial = location.hash.replace('#', '') || 'profile';
   showPage(initial);
 });
 
 window.addEventListener('popstate', () => {
-  const page = location.hash.replace('#', '') || 'home';
+  const page = location.hash.replace('#', '') || 'profile';
   showPage(page);
 });
 
@@ -46,7 +46,7 @@ document.getElementById('themeToggle').addEventListener('click', () => {
 });
 
 const heroText =
-  'Driving enterprise transformation through Artificial Intelligence, Lean Six Sigma, Agile execution, Power Platform automation and data-driven operational excellence.';
+  'Enterprise Transformation Leader with 15+ years driving multi-industry transformation across financial services, e-commerce, and manufacturing. Proven track record establishing and leading Transformation Management Offices, governing multi-year strategic portfolios, and advising C-suite leaders on operating model redesign, digital strategy, and enterprise performance.';
 
 let typeIndex = 0;
 const typingTarget = document.getElementById('typingText');
