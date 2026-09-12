@@ -394,6 +394,13 @@ body.light .icon-btn {
   margin-top: 12px;
 }
 
+.role-tagline {
+  color: var(--cyan) !important;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.5 !important;
+}
+
 .chip-row {
   display: flex;
   flex-wrap: wrap;
