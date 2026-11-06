@@ -367,6 +367,106 @@ ${message}`
   /* =========================================================
      INIT
   ========================================================= */
+  /* =========================================================
+     PROCESS EXCELLENCE IN MOTION (animated method cards)
+  ========================================================= */
+  const nodes = (labels, pos) => labels.map((l, i) => {
+    const [x, y] = pos(i);
+    return `<g class="dm-node" style="--i:${i}"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="12"/>` +
+           `<text x="${x.toFixed(1)}" y="${(y + 4).toFixed(1)}">${l}</text></g>`;
+  }).join('');
+
+  const dmaic = nodes(['D', 'M', 'A', 'I', 'C'], (i) => {
+    const a = (-90 + 72 * i) * Math.PI / 180;
+    return [120 + 50 * Math.cos(a), 75 + 50 * Math.sin(a)];
+  });
+  const stages = ['Empathise', 'Define', 'Ideate', 'Prototype', 'Test'];
+  const dtNodes = nodes(['1', '2', '3', '4', '5'], (i) => [28 + 46 * i, 50]);
+  const dtLabels = stages.map((s, i) => `<text class="lbl" x="${28 + 46 * i}" y="80">${s}</text>`).join('');
+  const kbCards = [0, 1, 2].map((i) =>
+    `<rect class="kb-card" style="--i:${i}" x="16" y="${34 + i * 28}" width="48" height="18" rx="3"/>`).join('');
+
+  const methodHTML = `
+  <div class="container method-strip">
+    <div class="kicker">Process Excellence in Motion</div>
+    <h2 class="page-title method-title">The frameworks behind the results</h2>
+    <div class="method-grid">
+
+      <div class="card method-card">
+        <svg viewBox="0 0 240 150" aria-hidden="true">
+          <circle class="dm-ring" cx="120" cy="75" r="50"/>
+          ${dmaic}
+          <g class="dm-orbit"><circle class="dm-dot" cx="120" cy="25" r="3.5"/></g>
+          <text class="lbl" x="120" y="73">CONTINUOUS</text><text class="lbl" x="120" y="84">IMPROVEMENT</text>
+        </svg>
+        <h3>DMAIC</h3>
+        <p>Define, Measure, Analyse, Improve, Control: the Lean Six Sigma loop behind every improvement programme.</p>
+      </div>
+
+      <div class="card method-card">
+        <svg viewBox="0 0 240 150" aria-hidden="true">
+          <line class="cc-mean" x1="8" y1="75" x2="232" y2="75"/>
+          <line class="cc-limit" x1="8" y1="35" x2="232" y2="35"/>
+          <line class="cc-limit" x1="8" y1="115" x2="232" y2="115"/>
+          <text class="lbl lbl-l" x="10" y="31">UCL</text><text class="lbl lbl-l" x="10" y="125">LCL</text>
+          <polyline class="cc-line" id="ccLine" points=""/>
+          <circle class="cc-dot" id="ccDot" r="3.5" cx="232" cy="75"/>
+        </svg>
+        <h3>Statistical Process Control</h3>
+        <p>Live control chart: variation tightens as the process is brought under control, the 95%+ reduction achieved in manufacturing.</p>
+      </div>
+
+      <div class="card method-card">
+        <svg viewBox="0 0 240 150" aria-hidden="true">
+          <rect class="kb-col" x="10" y="24" width="60" height="118" rx="5"/>
+          <rect class="kb-col" x="90" y="24" width="60" height="118" rx="5"/>
+          <rect class="kb-col" x="170" y="24" width="60" height="118" rx="5"/>
+          <text class="lbl" x="40" y="17">BACKLOG</text><text class="lbl" x="120" y="17">DOING</text><text class="lbl" x="200" y="17">DONE</text>
+          ${kbCards}
+        </svg>
+        <h3>Agile Delivery</h3>
+        <p>Work flows from backlog to done in short sprints, as applied in the GeMS and iGuarantee programmes.</p>
+      </div>
+
+      <div class="card method-card">
+        <svg viewBox="0 0 240 150" aria-hidden="true" style="--dur:7.5s;--step:1.5s">
+          <line class="dt-line" x1="28" y1="50" x2="212" y2="50"/>
+          ${dtNodes}${dtLabels}
+          <path class="dt-loop" d="M212 64 C212 135 28 135 28 64"/>
+          <text class="lbl" x="120" y="132">ITERATE</text>
+        </svg>
+        <h3>Design Thinking</h3>
+        <p>Empathise, define, ideate, prototype, test, then iterate. Applied at RHB for Premier Relationship Managers.</p>
+      </div>
+
+    </div>
+  </div>`;
+
+  $('#profile').insertAdjacentHTML('beforeend', methodHTML);
+
+  // Live control chart: new points stream in, variation shrinks, then the cycle restarts
+  const ccLine = $('#ccLine'), ccDot = $('#ccDot');
+  const ccVals = [];
+  let ccTick = 0;
+  const ccSigma = (t) => { const k = Math.min(1, (t % 300) / 225); return 52 - 44 * k * k * (3 - 2 * k); };
+  const ccStep = () => {
+    const s = ccSigma(ccTick++);
+    ccVals.push((Math.random() + Math.random() + Math.random() - 1.5) / 1.5 * s);
+    if (ccVals.length > 44) ccVals.shift();
+    const dx = 224 / 43;
+    const y = (v) => Math.max(12, Math.min(138, 75 - v));
+    ccLine.setAttribute('points', ccVals.map((v, i) => `${(232 - (ccVals.length - 1 - i) * dx).toFixed(1)},${y(v).toFixed(1)}`).join(' '));
+    const last = ccVals[ccVals.length - 1];
+    ccDot.setAttribute('cy', y(last));
+    ccDot.classList.toggle('out', Math.abs(last) > 40);
+  };
+  for (let i = 0; i < 44; i++) ccStep();
+  if (!reduceMotion) {
+    setInterval(() => {
+      if (!document.hidden && ccLine.getClientRects().length) ccStep();   // only while visible
+    }, 100);
+  }
+
   showPage(location.hash.replace('#', '') || 'profile', { instant: true });
   moveIndicator(true);
 })();
