@@ -987,3 +987,11 @@ textarea { min-height: 130px; resize: vertical; }
 @media (prefers-reduced-motion: reduce) {
   .method-card svg * { animation: none !important; }
 }
+
+/* Note under hero buttons */
+.access-note {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
