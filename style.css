@@ -995,3 +995,9 @@ textarea { min-height: 130px; resize: vertical; }
   line-height: 1.6;
   color: var(--muted);
 }
+
+.access-note a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
